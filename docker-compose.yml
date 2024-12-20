@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  orthanc:
+    command: /run/secrets/
+    secrets:
+      - orthanc.json
+    build:
+      context: ./
+    image: sidvaish97/orthanc_test:v1.0
+    platform: linux/amd64
+    restart: always
+    environment:
+      - ORTHANC_NAME=Orthanc
+      - ORTHANC_AUTHENTICATION=keycloak
+      - KEYCLOAK_REALM=orthanc
+      - KEYCLOAK_CLIENT_ID=orthanc
+    volumes:
+      - orthanc-db:/var/lib/orthanc/db
+    ports:
+    - "8889:8042"
+
+secrets:
+  orthanc.json:
+    file: orthanc.json
+
+volumes:
+  orthanc-db:
