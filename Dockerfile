@@ -1,5 +1,5 @@
 # Use the base Orthanc plugins image
-FROM jodogne/orthanc-plugins:latest
+FROM jodogne/orthanc-plugins:1.12.6
 
 RUN apt-get update && apt-get install -y openjdk-17-jdk cmake build-essential python3 unzip libjsoncpp-dev \
     && apt-get clean \
